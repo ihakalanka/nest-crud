@@ -19,8 +19,8 @@ export class StudentsService {
     return this.studentModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} student`;
+  findOne(firstName: string) {
+    return this.studentModel.findOne({ firstName });
   }
 
   update(id: number, updateStudentDto: UpdateStudentDto) {
