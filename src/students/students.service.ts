@@ -30,7 +30,7 @@ export class StudentsService {
     );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} student`;
+  remove(firstName: string) {
+    return this.studentModel.remove({ firstName });
   }
 }
