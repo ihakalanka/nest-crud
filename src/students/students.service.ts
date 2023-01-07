@@ -16,7 +16,7 @@ export class StudentsService {
   }
 
   async findAll() {
-    
+    return this.studentModel.find();
   }
 
   findOne(id: number) {
