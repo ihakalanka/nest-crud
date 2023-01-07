@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
@@ -7,28 +15,31 @@ import { UpdateStudentDto } from './dto/update-student.dto';
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createStudentDto: CreateStudentDto) {
     return this.studentsService.create(createStudentDto);
   }
 
-  @Get()
+  @Get('/get-all')
   findAll() {
     return this.studentsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.studentsService.findOne(+id);
+  @Get('/get/:firstName')
+  findOne(@Param('firstName') firstName: string) {
+    return this.studentsService.findOne(firstName);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(+id, updateStudentDto);
+  @Patch('/update/:firstName')
+  update(
+    @Param('firstName') firstName: string,
+    @Body() updateStudentDto: UpdateStudentDto,
+  ) {
+    return this.studentsService.update(firstName, updateStudentDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.studentsService.remove(+id);
+  @Delete('/delete/:firstName')
+  remove(@Param('firstName') firstName: string) {
+    return this.studentsService.remove(firstName);
   }
 }
