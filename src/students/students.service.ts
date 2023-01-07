@@ -19,12 +19,15 @@ export class StudentsService {
     return this.studentModel.find();
   }
 
-  findOne(firstName: string) {
+  async findOne(firstName: string) {
     return this.studentModel.findOne({ firstName });
   }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
+  async update(firstName: string, updateStudentDto: UpdateStudentDto) {
+    return this.studentModel.updateOne(
+      { firstName },
+      { $set: updateStudentDto },
+    );
   }
 
   remove(id: number) {
